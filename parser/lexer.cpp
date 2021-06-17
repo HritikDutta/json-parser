@@ -4,10 +4,10 @@
 #include <iostream>
 #endif
 
+#include <cstdint>
 #include <string>
 #include <string_view>
 #include "containers/darray.h"
-#include "misc/types.h"
 #include "error_strings.h"
 
 namespace json

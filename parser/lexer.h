@@ -1,9 +1,9 @@
 #pragma once
 
+#include <cstdint>
 #include <string>
 #include <string_view>
 #include "containers/darray.h"
-#include "misc/types.h"
 
 namespace json
 {

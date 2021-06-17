@@ -1,10 +1,10 @@
 #include "fileio.h"
 
+#include <cstdint>
 #include <stdio.h>
 #include <fstream>
 #include <string>
 #include "containers/darray.h"
-#include "misc/types.h"
 #include "misc/gn_assert.h"
 
 std::string LoadFile(const std::string_view& filepath)
@@ -22,23 +22,6 @@ std::string LoadFile(const std::string_view& filepath)
 
     std::string contents = buffer;
     free(buffer);
-
-    fclose(file);
-    return std::move(contents);
-}
-
-gn::darray<Byte> LoadBinaryFile(const std::string_view& filepath)
-{
-    FILE* file = fopen(filepath.data(), "rb");
-    ASSERT(file != nullptr);
-
-    gn::darray<Byte> contents;
-
-    fseek(file, 0, SEEK_END);
-    contents.resize(ftell(file));
-    fseek(file, 0, SEEK_SET);
-
-    fread(contents.data(), sizeof(Byte), contents.size(), file);
 
     fclose(file);
     return std::move(contents);
