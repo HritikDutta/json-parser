@@ -10,7 +10,7 @@ namespace json
 struct Parser
 {
     size_t current_token_index;
-    void ParseLexedOuput(const Lexer& lexer, Document& out);
+    void ParseLexedOutput(const Lexer& lexer, Document& out);
 
     int errorCode;
     int errorLineNumber;

@@ -107,6 +107,7 @@ static String EscapeToken(Parser& parser, const Token& token)
     String escaped;
 
     auto& view = token.value;
+    escaped.reserve(view.size());   // To prevent unnecessary resizing
 
     for (size_t i = 0; i < view.size() && parser.errorCode == 0; i++)
     {
@@ -366,7 +367,7 @@ static void ParseNext(Parser& parser, const Lexer& lexer, Document& out)
     parser.current_token_index++;
 }
 
-void Parser::ParseLexedOuput(const Lexer& lexer, Document& out)
+void Parser::ParseLexedOutput(const Lexer& lexer, Document& out)
 {
     current_token_index = 0;
     errorCode = 0;
@@ -414,7 +415,7 @@ bool ParseFile(std::string json, Document& document)
         return false;
 
     json::Parser parser;
-    parser.ParseLexedOuput(lexer, document);
+    parser.ParseLexedOutput(lexer, document);
 
     if (parser.errorCode != 0)
         return false;
